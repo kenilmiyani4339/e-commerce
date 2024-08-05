@@ -1,0 +1,55 @@
+.full {
+    background: rgb(255, 216, 221);
+    height: 100vh;
+    padding: 0%;
+}
+
+.box {
+    padding-top: 120px;
+}
+
+.box div {
+    border-radius: 5px;
+    background-color: white;
+    max-width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 580px;
+
+}
+
+.box h2 {
+    padding-top: 40px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.box input {
+    width: 70%;
+    display: flex;
+    margin: 0% auto;
+    padding: 10px;
+}
+
+.box textarea {
+    width: 70%;
+    display: flex;
+    margin: 0% auto;
+    padding: 10px;
+}
+
+.box button {
+    width: 70%;
+    display: flex;
+    margin: 0px auto 30px;
+    padding: 10px;
+    background: rgb(255, 255, 175);
+    color: black;
+    border: none;
+    justify-content: center;
+}
+
+.box button:hover {
+    background-color: rgb(255, 255, 139);
+}

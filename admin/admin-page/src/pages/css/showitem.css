@@ -1,0 +1,25 @@
+.showitem {
+    background: rgb(255, 216, 221);
+    height: 100vh;
+}
+
+.table {
+    padding: 150px;
+}
+
+.table th {
+    border: 1px solid black;
+    padding: 10px;
+    background-color: rgb(255, 255, 175);
+}
+
+.table td {
+    border: gray;
+    padding: 10px;
+    border-style:  double;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}

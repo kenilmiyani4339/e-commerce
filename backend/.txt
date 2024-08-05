@@ -1,0 +1,74 @@
+
+
+react js==================
+
+  const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState(null);
+
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        try {
+            const response = await axios.post('http://localhost:3000/upload', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+            setUploadedImage(response.data.imagePath);
+            console.log('response: ', response);
+        } catch (err) {
+            console.error('Error uploading image', err);
+        }
+    };
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="file" onChange={handleFileChange} />
+                <button type="submit">Upload</button>
+            </form>
+            {uploadedImage && <img src={`http://localhost:3000/${   }`} alt="Uploaded" />}
+        </div>
+    );
+
+
+
+nodejs ====================
+
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+mongoose.connect('mongodb://localhost:27017/image-upload', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  
+  const imageSchema = new mongoose.Schema({
+    imagePath: String,
+  });
+  const Image = mongoose.model('Image', imageSchema);
+
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname);
+    },
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  // Upload route
+  app.post('/upload', upload.single('image'), async (req, res) => {
+    const image = new Image({ imagePath: req.file.path });
+    await image.save();
+    res.send({ imagePath: req.file.path });
+  });
+  
+
+
